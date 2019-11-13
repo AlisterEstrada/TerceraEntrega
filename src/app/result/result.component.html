@@ -1,0 +1,89 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<app-sidenav-list></app-sidenav-list>
+<div id="buscar" class="container">
+
+
+
+  <div class="col-md-12">
+
+    <div class="results-container rightBorder" *ngIf="book">
+
+      <div class="card mb-4 shadow-sm">
+
+        <p *ngIf="book.volumeInfo.imageLinks"><img  class="card-img-top" src={{book.volumeInfo.imageLinks.thumbnail}} alt="Card image cap" width="150" height="400"/></p>
+        <div class="card-body row-eq-height">
+
+      <h4>Rating {{book.volumeInfo.averageRating}}</h4>
+
+      <a href="#" class="btn btn-lg btn-info"><span class="glyphicon glyphicon-book"></span> agregar a leido</a>
+
+
+
+    </div>
+  </div>
+
+
+
+
+  <div class="col-md-12" *ngIf="book">
+   <h2> {{book.volumeInfo.title}} </h2>
+   <h4>Description</h4>
+   <p>{{book.volumeInfo.description}}</p>
+   <hr />
+   <h4>Category</h4>
+   <p>{{book.volumeInfo.categories}}</p>
+   <h4>Author</h4>
+   <p>{{book.volumeInfo.authors}}</p>
+   <h4>Publisher</h4>
+   <p>{{book.volumeInfo.publisher}}</p>
+   <h4>Published date</h4>
+   <p>{{book.volumeInfo.publishedDate}}</p>
+    <h4>Language</h4>
+   <p>{{book.volumeInfo.language}}</p>
+   <hr />
+
+   <h2>Titulos Similares</h2>
+
+   <div *ngIf="similars" >
+    <div class="container body">
+
+       <div class="col-md-6 col-sm-6 col-xs-12" *ngFor="let similar of similars" [routerLink]="['/search', similar.volumeInfo.industryIdentifiers[0].identifier]">
+         <div class="card mb-4 shadow-sm">
+
+           <p *ngIf="similar.volumeInfo.imageLinks"><img  class="card-img-top" src={{similar.volumeInfo.imageLinks.thumbnail}} alt="Card image cap" width="250" height="400"/></p>
+           <div class="card-body row-eq-height">
+             <p class="card-text">{{similar.volumeInfo.title}}</p>
+             <p class="card-text">Rating {{similar.volumeInfo.averageRating}}</p>
+
+           </div>
+
+
+         </div>
+
+     </div>
+    </div>
+
+
+
+   <p><a href={{book.volumeInfo.previewLink}} target="_blank" class="btn btn-block btn-lg btn-primary"><span class="glyphicon glyphicon-credit-card"></span> Comprar</a></p>
+  </div>
+
+
+
+
+
+
+ <div *ngIf>
+  <div class="col-md-5">
+      <h2>Preview</h2>
+      <div id="viewerCanvas" style="width: 120%; height: 700px"></div>
+  </div>
+  <div>
+
+</div>

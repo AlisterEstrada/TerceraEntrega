@@ -1,0 +1,37 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<app-sidenav-list></app-sidenav-list>
+
+
+<div id="buscar">
+    <input type="search"  placeholder="Search Books" #search id="search" />
+
+    <button (click)="OnSearch(search.value)" class="btn btn-outline-primary rounded-right" type="button">
+          <span class="glyphicon glyphicon-search"></span>
+        </button>
+
+
+</div>
+
+<div id="buscar" *ngIf="books" >
+ <div class="container body">
+
+    <div class="col-md-4 col-sm-6 col-xs-6" *ngFor="let book of books" [routerLink]="['/search', book.volumeInfo.industryIdentifiers[0].identifier]">
+      <div class="card mb-4 shadow-sm">
+
+        <p *ngIf="book.volumeInfo.imageLinks"><img  class="card-img-top" src={{book.volumeInfo.imageLinks.thumbnail}} alt="Card image cap" width="250" height="400"/></p>
+        <div class="card-body row-eq-height">
+          <p class="card-text">{{book.volumeInfo.title}}</p>
+          <p class="card-text">Rating {{book.volumeInfo.averageRating}}</p>
+
+        </div>
+
+      </div>
+
+  </div>
+ </div>
